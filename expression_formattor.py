@@ -1,5 +1,7 @@
 class ExpressionFormattor:
     def format(self,exp):
+        if exp.isdigit() or (exp.find("'") != -1 or exp.find('"') != -1) or (exp.find("(") == -1 and exp.find(")") == -1):
+            return exp
         exp = exp.replace("\n"," ")
         return self._convert_to_list(exp)
     def _convert_to_list(self,exp):

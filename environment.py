@@ -3,6 +3,8 @@ class Frame:
         self._vars = variables
     def get_variables(self):
         return self._vars
+    def set_variables(self,vars):
+        self._vars = vars
     def set_variable(self,name,value):
         self._vars[name] = value
     def get_variable(self,name):
@@ -35,7 +37,9 @@ class Environment:
     def define_variable(self,name,value):
         self._frame.set_variable(name,value)
     @staticmethod
-    def extend_environment(env):
+    def extend_environment(vars,env):
         new_env = Environment()
+        frame = Frame(vars)
+        new_env.set_frame(frame)
         new_env.set_parent_env(env)
         return new_env
