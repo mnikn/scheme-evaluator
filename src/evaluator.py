@@ -4,6 +4,7 @@ from expression import *
 from primitives import *
 from environment import *
 
+
 class Evaluator:
     def __init__(self,primitives):
         self._exp_parser = ExpressionParser()
@@ -34,19 +35,21 @@ def run_evaluator():
     print("--------------------\n")
     run_evaluator()
 
+if __name__ == '__main__':
+    global_env = Environment()
+    exp_formattor = ExpressionFormattor()
+    primitives = {
+        "+": add,
+        "-": subtract,
+        "*": multiply,
+        "/": divide,
+        "list": to_list,
+        "cons": cons,
+        "car": car,
+        "cdr": cdr,
+        "null?": null}
+    init_primitives()
+    evaluator = Evaluator(primitives)
+    run_evaluator()
 
-global_env = Environment()
-exp_formattor = ExpressionFormattor()
-primitives = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide,
-    "list": to_list,
-    "cons": cons,
-    "car": car,
-    "cdr": cdr,
-    "null?": null}
-init_primitives()
-evaluator = Evaluator(primitives)
-run_evaluator()
+
