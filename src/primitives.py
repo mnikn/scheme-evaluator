@@ -12,6 +12,8 @@ def multiply(*args):
     return accumulate(lambda a,b:a * b,1,args)
 def divide(*args):
     return accumulate(lambda a,b:a / b,1,args)
+def equal(*args):
+    return args[0] == args[1]
 
 def to_list(*args):
     return accumulate(lambda a,b:a + [b],[],args)

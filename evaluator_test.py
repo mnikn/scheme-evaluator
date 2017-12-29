@@ -41,14 +41,14 @@ class TestVariableExpression(unittest.TestCase):
 
 class TestDefineExpression(unittest.TestCase):
 	def setUp(self):
-		self.exp = DefineExpression(["define","x","65"])
+		self.exp1 = DefineExpression(["define","x","65"])
 	def test_init(self):
-		self.assertEqual("x",self.exp.variable)
-		self.assertEqual("65",self.exp.value)
+		self.assertEqual("x",self.exp1.variable)
+		self.assertEqual("65",self.exp1.value)
 	def test_eval(self):
 		evaluator = Evaluator({})
 		env = Environment()
-		self.exp.eval(evaluator,env)
+		self.exp1.eval(evaluator,env)
 		self.assertEqual(env.get_variable("x"),65)
 
 

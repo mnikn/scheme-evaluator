@@ -1,4 +1,5 @@
 from environment import *
+from primitives import accumulate
 
 class Expression:
     def __init__(self):
@@ -55,6 +56,19 @@ class IfExpression(Expression):
         if evaluator.eval(self.pred,env):
             return evaluator.eval(self.true_exp,env)
         return evaluator.eval(self.false_exp,env)
+
+class CondExpression(Expression):
+    def __init__(self,exp):
+        self.conditions = exp[1:len(exp)-1]
+        self.otherwise = exp[-1]
+    def eval(self,evaluator,env):
+        exps = self._cond_to_if(self.conditions)
+        return IfExpression(exps).eval(evaluator,env)
+    def _cond_to_if(self,conditions):
+        if len(conditions) == 1:
+            return ["if"] + conditions[0] + [self.otherwise[-1]]
+        conditions[0] += [self._cond_to_if(conditions[1:])]
+        return ["if"] + conditions[0]
 
 class LambdaExpression(Expression):
     def __init__(self,exp):

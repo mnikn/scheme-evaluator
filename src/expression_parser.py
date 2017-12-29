@@ -19,6 +19,8 @@ class ExpressionParser:
             exp = AssignmentExpression(exp)
         elif exp[0] == "if":
             exp = IfExpression(exp)
+        elif exp[0] == "cond":
+            exp = CondExpression(exp)
         elif exp[0] == "lambda":
             exp = LambdaExpression(exp)
         elif exp[0] == "begin":
