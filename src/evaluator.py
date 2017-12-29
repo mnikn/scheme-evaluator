@@ -1,5 +1,4 @@
 from expression_formattor import *
-from expression_parser import *
 from expression import *
 from primitives import *
 from environment import *
@@ -7,18 +6,17 @@ from environment import *
 
 class Evaluator:
     def __init__(self,primitives):
-        self._exp_parser = ExpressionParser()
         self._primitives = primitives
     def eval(self,exp,env):
         if exp == []: return
 
         if isinstance(exp,Expression) == False:
-            exp = self._exp_parser.parse(exp,env)
-        return exp.eval(self,env)
+            exp = Expression.parser.parse(exp)
+        return exp.analyze()(self,env)
     def apply(self,proc,args):
         if isinstance(proc,ProcedureExpression):
             proc.env = Environment.extend_environment(dict(zip(proc.args, args)),proc.env)
-            return proc.eval(self,proc.env)
+            return self.eval(proc,proc.env)
         return proc(*args)
 
 def init_primitives():
