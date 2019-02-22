@@ -1,16 +1,15 @@
 # scheme-evaluator
 
-一个基于 python3 实现的一个玩具 scheme 解释器，其中的思路主要参考于 **sicp** 的第四章，目前支持的功能有：
+A toy scheme evaluator implemented by python3, features:
 
-- 变量和函数的定义
-- 四则运算
-- lambda 表达式
-- 闭包
-- JIT
+- varible and function
+- expression
+- lambda expression
+- closure
 
-## 如何运行
+## How to run
 
-执行 `evaluator.py` 即可。运行示例：
+Run `evaluator.py`：
 
 ```scheme
 --------------------
